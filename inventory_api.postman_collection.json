@@ -64,6 +64,16 @@
 				{
 					"name": "List Inventory Items",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -72,7 +82,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/api/inventory?search=item&min_price=10&max_price=1000",
+							"raw": "{{base_url}}/api/inventory?search=ad&min_price=10&max_price=1000",
 							"host": [
 								"{{base_url}}"
 							],
@@ -83,7 +93,7 @@
 							"query": [
 								{
 									"key": "search",
-									"value": "item"
+									"value": "ad"
 								},
 								{
 									"key": "min_price",
@@ -95,13 +105,23 @@
 								}
 							]
 						},
-						"description": "Returns a paginated list of all inventory items with search and price filtering."
+						"description": "Returns a paginated list of all inventory items. REQUIRED: Bearer Token."
 					},
 					"response": []
 				},
 				{
 					"name": "Get Warehouse Inventory",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -121,7 +141,7 @@
 								"inventory"
 							]
 						},
-						"description": "Returns inventory for a specific warehouse (cached)."
+						"description": "Returns inventory for a specific warehouse (cached). REQUIRED: Bearer Token."
 					},
 					"response": []
 				}

@@ -19,8 +19,12 @@ class TransferStockAction
                 ->lockForUpdate()
                 ->first();
 
-            if (!$sourceStock || $sourceStock->quantity < $quantity) {
-                throw new Exception('Insufficient stock in source warehouse.');
+            if (!$sourceStock) {
+                throw new Exception("Item not found in source warehouse.");
+            }
+
+            if ($sourceStock->quantity < $quantity) {
+                throw new Exception("Insufficient stock. Available: {$sourceStock->quantity}, Requested: {$quantity}");
             }
 
             // Deduct from source

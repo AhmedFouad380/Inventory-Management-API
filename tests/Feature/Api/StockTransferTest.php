@@ -26,7 +26,7 @@ class StockTransferTest extends TestCase
             'quantity' => 50,
         ]);
 
-        $response = $this->actingAs($user, 'api')
+        $response = $this->actingAs($user, 'sanctum')
             ->postJson('/api/stock-transfers', [
                 'from_warehouse_id' => $warehouseA->id,
                 'to_warehouse_id' => $warehouseB->id,
